@@ -12,7 +12,7 @@ export default function AppText({ children, style }) {
   if (!fontsLoaded) {
     return (
       <View>
-        <Text style={[style, { fontSize: 18 }]}>{children}</Text>
+        <Text style={[{ fontSize: 18 }, style]}>{children}</Text>
       </View>
     );
   }
@@ -31,6 +31,7 @@ const platformSpecificStyles = Platform.select({
   },
   ios: {
     fontFamily: "Avenir",
+    fontFamily: `${fontName}`,
   },
 });
 

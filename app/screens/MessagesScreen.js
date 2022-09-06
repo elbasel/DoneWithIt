@@ -11,13 +11,13 @@ const initialMessages = [
     id: 1,
     title: "T1",
     subTitle: "D1",
-    image: require("../assets/mosh.jpg"),
+    image: require("../assets/elbasel.jpg"),
   },
   {
     id: 2,
     title: "T2",
     subTitle: "D2",
-    image: require("../assets/mosh.jpg"),
+    image: require("../assets/elbasel.jpg"),
   },
 ];
 
@@ -55,7 +55,7 @@ export default function MessagesScreen() {
               id: 2,
               title: "T2",
               subTitle: "D2",
-              image: require("../assets/mosh.jpg"),
+              image: require("../assets/elbasel.jpg"),
             },
           ]);
         }}
