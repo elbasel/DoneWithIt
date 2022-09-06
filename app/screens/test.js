@@ -1,32 +1,33 @@
-import { FlatList, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { FlatList, StyleSheet, View } from "react-native";
 
+import Screen from "../components/Screen";
 import ListItem from "../components/ListItem";
 import ListItemSeparator from "../components/ListItemSeparator";
-import Screen from "../components/Screen";
 import ListItemDeleteAction from "../components/ListItemDeleteAction";
-import { useState } from "react";
 
 const initialMessages = [
   {
     id: 1,
     title: "T1",
-    subTitle: "D1",
+    description: "D1",
     image: require("../assets/mosh.jpg"),
   },
   {
     id: 2,
     title: "T2",
-    subTitle: "D2",
+    description: "D2",
     image: require("../assets/mosh.jpg"),
   },
 ];
 
-export default function MessagesScreen() {
+function MessagesScreen(props) {
   const [messages, setMessages] = useState(initialMessages);
   const [refreshing, setRefreshing] = useState(false);
 
-  const handleDelete = (item) => {
-    setMessages(messages.filter((m) => m.id !== item.id));
+  const handleDelete = (message) => {
+    // Delete the message from messages
+    setMessages(messages.filter((m) => m.id !== message.id));
   };
 
   return (
@@ -37,11 +38,9 @@ export default function MessagesScreen() {
         renderItem={({ item }) => (
           <ListItem
             title={item.title}
-            subTitle={item.subTitle}
+            subTitle={item.description}
             image={item.image}
-            onPress={() => {
-              console.log("Message selected", item);
-            }}
+            onPress={() => console.log("Message selected", item)}
             renderRightActions={() => (
               <ListItemDeleteAction onPress={() => handleDelete(item)} />
             )}
@@ -54,7 +53,7 @@ export default function MessagesScreen() {
             {
               id: 2,
               title: "T2",
-              subTitle: "D2",
+              description: "D2",
               image: require("../assets/mosh.jpg"),
             },
           ]);
@@ -65,3 +64,5 @@ export default function MessagesScreen() {
 }
 
 const styles = StyleSheet.create({});
+
+export default MessagesScreen;
