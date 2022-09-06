@@ -1,4 +1,5 @@
-// import { StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import ListItemDeleteAction from "./app/components/ListItemDeleteAction";
 
 import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
 import MessagesScreen from "./app/screens/MessagesScreen";
@@ -10,13 +11,17 @@ export default function App() {
 }
 
 // export default function App() {
-//   return <View style={styles.containerTwo}></View>;
+//   return (
+//     <View style={styles.containerTwo}>
+//       <ListItemDeleteAction />
+//     </View>
+//   );
 // }
 // const styles = StyleSheet.create({
 //   container: {
 //     flex: 1,
-//     justifyContent: "center",
-//     alignItems: "center",
+//     // justifyContent: "center",
+//     // alignItems: "center",
 //   },
 //   containerTwo: {
 //     flex: 1,
