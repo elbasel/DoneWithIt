@@ -9,6 +9,7 @@ import Screen from "./app/components/Screen";
 import AppTextInput from "./app/components/AppTextInput";
 import AppText from "./app/components/AppText";
 import AppPicker from "./app/components/AppPicker";
+import { useState } from "react";
 
 let categories = [
   {
@@ -26,10 +27,20 @@ let categories = [
 ];
 
 export default function App() {
+  const [category, setCategory] = useState();
+
   return (
     <Screen>
       <AppTextInput placeholder="First Name" icon="email" />
-      <AppPicker items={categories} placeholder="Category" icon="apps" />
+      <AppPicker
+        items={categories}
+        placeholder="Category"
+        icon="apps"
+        selectedItem={category}
+        onSelectItem={(item) => {
+          setCategory(item);
+        }}
+      />
     </Screen>
   );
 }
