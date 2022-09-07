@@ -6,6 +6,14 @@ import Screen from "../components/Screen";
 import AppTextInput from "../components/AppTextInput";
 import AppButton from "../components/AppButton";
 import AppText from "../components/AppText";
+import ErrorMessage from "../components/ErrorMessage";
+import AppFormField from "../components/AppFormField";
+import SubmitButton from "../components/SubmitButton";
+
+const validationSchema = Yup.object({
+  email: Yup.string().required().email().label("Email"),
+  password: Yup.string().required().min(6).label("Password"),
+});
 
 export default function LoginScreen() {
   return (
@@ -15,30 +23,30 @@ export default function LoginScreen() {
       <Formik
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => console.log(values)}
+        validationSchema={validationSchema}
       >
-        {({ handleChange, handleSubmit, errors }) => (
+        {() => (
           <>
-            <AppTextInput
+            <AppFormField
+              name="email"
               autoCapitalize={false}
               autoCorrect={false}
               icon="email"
               placeholder="Email"
               keyboardType="email-address"
               textContentType="emailAddress"
-              onChangeText={handleChange("email")}
             />
 
-            {errors.email && <AppText>errors.email</AppText>}
-            <AppTextInput
+            <AppFormField
+              name="password"
               autoCapitalize={false}
               autoCorrect={false}
               icon="lock"
               placeholder="Password"
               textContentType="password"
               secureTextEntry
-              onChangeText={handleChange("password")}
             />
-            <AppButton title="Login" onPress={handleSubmit} />
+            <SubmitButton title="Login" />
           </>
         )}
       </Formik>
