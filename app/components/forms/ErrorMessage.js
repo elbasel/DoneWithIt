@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
-import AppText from "./AppText";
+import { StyleSheet } from "react-native";
+import AppText from "../AppText";
 
 export default function ErrorMessage({ error, visible }) {
   if (!visible || !error) {
@@ -12,5 +12,6 @@ export default function ErrorMessage({ error, visible }) {
 const styles = StyleSheet.create({
   error: {
     color: "red",
+    paddingHorizontal: 5,
   },
 });
