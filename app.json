@@ -21,6 +21,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.elbasel.elbasel",
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
@@ -28,6 +29,9 @@
     },
     "web": {
       "favicon": "./app/assets/favicon.png"
+    },
+    "packagerOpts": {
+      "sourceExts": [ "js", "json", "ts", "tsx", "jsx", "vue"]
     }
   }
 }

@@ -8,6 +8,6 @@ export default function Screen({ children, style }) {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    paddingTop: Constants.statusBarHeight,
+    paddingTop: Constants.statusBarHeight + 5,
   },
 });
