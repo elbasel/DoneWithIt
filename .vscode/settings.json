@@ -6,5 +6,8 @@
     "Formik",
     "Roboto",
     "Swipeable"
-  ]
+  ],
+  "search.exclude": {
+    "**/\"node_modules\":true": true
+  }
 }

@@ -10,7 +10,7 @@ export default function ListingDetailsScreen({ route }) {
 
   return (
     <View>
-      <Image style={styles.image} source={item.image} />
+      <Image style={styles.image} source={{ uri: item.images[0].url }} />
       <View style={styles.detailsContainer}>
         <AppText style={styles.title} numberOfLines={1}>
           {item.title}
