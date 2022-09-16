@@ -11,6 +11,9 @@ import {
 } from "../components/forms";
 import CategoryPickerItem from "../components/CategoryPickerItem";
 import useLocation from "../hooks/useLocation";
+import listingsApi from "../api/listings";
+import { useState } from "react";
+import UploadScreen from "./UploadScreen";
 
 const categories = [
   {
@@ -79,9 +82,32 @@ const validationSchema = Yup.object().shape({
 
 export default function ListingEditScreen() {
   const location = useLocation();
+  const [uploadVisible, setUploadVisible] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  const handleSubmit = async (listing, { resetForm }) => {
+    setProgress(0);
+    setUploadVisible(true);
+    const result = await listingsApi.addListing(
+      { ...listing, location },
+      (progress) => setProgress(progress)
+    );
+
+    if (!result.ok) {
+      setUploadVisible(false);
+      return alert("Failed to post");
+    }
+
+    resetForm();
+  };
 
   return (
     <Screen style={styles.container}>
+      <UploadScreen
+        visible={uploadVisible}
+        progress={progress}
+        onDone={() => setUploadVisible(false)}
+      />
       <AppForm
         initialValues={{
           title: "",
@@ -91,7 +117,7 @@ export default function ListingEditScreen() {
           images: [],
         }}
         validationSchema={validationSchema}
-        onSubmit={(values) => console.log({ location })}
+        onSubmit={handleSubmit}
       >
         <AppFormImagePicker name="images" />
         <AppFormField name="title" placeholder="Title" maxLength={255} />
@@ -126,5 +152,8 @@ export default function ListingEditScreen() {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
+
+    //to prevent the container from showing from under the modal
+    marginTop: 1,
   },
 });
