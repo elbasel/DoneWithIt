@@ -1,21 +1,31 @@
-import { Image, StyleSheet, View } from "react-native";
+import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
+import { Image } from "react-native-expo-image-cache";
 
 import colors from "../config/colors";
 
 import AppText from "../components/AppText";
 import { ListItem } from "../components/lists";
+import ContactSellerForm from "../components/ContactSellerForm";
 
 export default function ListingDetailsScreen({ route }) {
-  const item = route.params;
+  const listing = route.params;
 
   return (
-    <View>
-      <Image style={styles.image} source={{ uri: item.images[0].url }} />
+    <KeyboardAvoidingView
+      behavior="position"
+      keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 100}
+    >
+      <Image
+        style={styles.image}
+        uri={listing.images[0].url}
+        preview={listing.images[0].thumbnailUrl}
+        tint="light"
+      />
       <View style={styles.detailsContainer}>
         <AppText style={styles.title} numberOfLines={1}>
-          {item.title}
+          {listing.title}
         </AppText>
-        <AppText style={styles.price}>${item.price}</AppText>
+        <AppText style={styles.price}>${listing.price}</AppText>
         <View style={styles.userContainer}>
           <ListItem
             image={require("../assets/elbasel.jpg")}
@@ -24,7 +34,10 @@ export default function ListingDetailsScreen({ route }) {
           />
         </View>
       </View>
-    </View>
+      <View style={styles.formContainer}>
+        <ContactSellerForm listing={listing} />
+      </View>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -47,5 +60,8 @@ const styles = StyleSheet.create({
   },
   userContainer: {
     marginVertical: 40,
+  },
+  formContainer: {
+    paddingHorizontal: 10,
   },
 });
